@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>京都大阪 2026</title>
+<meta name="description" content="2026/9/26–30 京都大阪行程・含逐段交通與票價">
+<meta name="theme-color" content="#6b4a3f">
+<style>
+:root{
+  --ground:#f7f5f2;
+  --surface:#fffefc;
+  --surface-2:#f0ece6;
+  --ink:#1b1917;
+  --ink-2:#4a453f;
+  --muted:#807a71;
+  --line:#ddd6cc;
+  --line-soft:#e9e3da;
+  --accent:#6b4a3f;
+  --accent-soft:#f0e6e2;
+  --warn:#9a4b1e;
+  --warn-soft:#fbeade;
+  --ok:#3d6b45;
+  --ok-soft:#e4efe4;
+
+  --jr:#0072bc;
+  --karasuma:#00a650;
+  --hankyu:#7a5346;
+  --tanimachi:#9b5aa0;
+  --nagahori:#7fa62a;
+  --midosuji:#d92b2b;
+  --nankai:#1f5fa8;
+  --bus:#5b7f3f;
+  --taxi:#6b6b6b;
+  --walk:#9a9289;
+
+  --ff-sans:"PingFang TC","Hiragino Sans","Noto Sans TC","Microsoft JhengHei",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --ff-mono:ui-monospace,"SF Mono","SFMono-Regular","Menlo","Consolas",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#16151a;
+    --surface:#1e1d23;
+    --surface-2:#26252c;
+    --ink:#eceae6;
+    --ink-2:#c4c0b8;
+    --muted:#918b82;
+    --line:#35333c;
+    --line-soft:#2b2a31;
+    --accent:#c8a08e;
+    --accent-soft:#332723;
+    --warn:#e0a274;
+    --warn-soft:#3a2619;
+    --ok:#8fc098;
+    --ok-soft:#1f2e22;
+    --jr:#4aa3dd;
+    --karasuma:#3cc178;
+    --hankyu:#c1917f;
+    --tanimachi:#c085c4;
+    --nagahori:#a9c95a;
+    --midosuji:#f0625f;
+    --nankai:#5a94d8;
+    --bus:#8aaf6a;
+    --taxi:#9a9a9a;
+    --walk:#7d776f;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16151a;
+  --surface:#1e1d23;
+  --surface-2:#26252c;
+  --ink:#eceae6;
+  --ink-2:#c4c0b8;
+  --muted:#918b82;
+  --line:#35333c;
+  --line-soft:#2b2a31;
+  --accent:#c8a08e;
+  --accent-soft:#332723;
+  --warn:#e0a274;
+  --warn-soft:#3a2619;
+  --ok:#8fc098;
+  --ok-soft:#1f2e22;
+  --jr:#4aa3dd;
+  --karasuma:#3cc178;
+  --hankyu:#c1917f;
+  --tanimachi:#c085c4;
+  --nagahori:#a9c95a;
+  --midosuji:#f0625f;
+  --nankai:#5a94d8;
+  --bus:#8aaf6a;
+  --taxi:#9a9a9a;
+  --walk:#7d776f;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--ff-sans);font-size:16px;line-height:1.65;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px}
+
+/* ---------- masthead ---------- */
+.mast{
+  background:var(--accent);color:#fff;
+  padding:22px 0 18px;
+}
+:root[data-theme="dark"] .mast,
+:root:not([data-theme="light"]) .mast{color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mast{background:#3a2a25}}
+:root[data-theme="dark"] .mast{background:#3a2a25}
+.mast h1{
+  margin:0;font-size:1.45rem;font-weight:700;letter-spacing:.02em;
+  text-wrap:balance;
+}
+.mast .sub{
+  margin-top:6px;font-size:.82rem;opacity:.85;
+  font-family:var(--ff-mono);letter-spacing:.04em;
+}
+.mast .flights{
+  margin-top:12px;display:flex;flex-wrap:wrap;gap:6px 14px;
+  font-size:.76rem;opacity:.9;font-family:var(--ff-mono);
+}
+
+/* ---------- day nav ---------- */
+nav.days{
+  position:sticky;top:0;z-index:20;
+  background:var(--surface);border-bottom:1px solid var(--line);
+}
+.days-inner{
+  max-width:680px;margin:0 auto;display:flex;overflow-x:auto;
+  scrollbar-width:none;
+}
+.days-inner::-webkit-scrollbar{display:none}
+.daybtn{
+  flex:0 0 auto;appearance:none;background:none;border:0;
+  border-bottom:2.5px solid transparent;
+  padding:11px 14px;cursor:pointer;color:var(--muted);
+  font-family:var(--ff-sans);font-size:.86rem;font-weight:600;
+  line-height:1.2;white-space:nowrap;
+}
+.daybtn small{
+  display:block;font-family:var(--ff-mono);font-size:.68rem;
+  font-weight:400;opacity:.8;margin-top:2px;
+}
+.daybtn[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.daybtn:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+
+/* ---------- panels ---------- */
+.panel{display:none;padding:20px 0 56px}
+.panel.on{display:block}
+
+.dayhead{margin:0 0 4px;font-size:1.15rem;font-weight:700}
+.daymeta{
+  font-family:var(--ff-mono);font-size:.75rem;color:var(--muted);
+  margin-bottom:18px;display:flex;flex-wrap:wrap;gap:4px 12px;
+}
+
+/* ---------- timeline ---------- */
+ol.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+ol.tl>li{
+  display:grid;grid-template-columns:52px 1fr;gap:0 12px;
+  position:relative;padding:9px 0;
+}
+ol.tl>li::before{
+  content:"";position:absolute;left:58px;top:0;bottom:0;width:1px;
+  background:var(--line-soft);
+}
+ol.tl>li:first-child::before{top:14px}
+ol.tl>li:last-child::before{bottom:calc(100% - 14px)}
+.t{
+  font-family:var(--ff-mono);font-size:.8rem;color:var(--muted);
+  font-variant-numeric:tabular-nums;padding-top:1px;text-align:right;
+}
+.t.key{color:var(--ink);font-weight:600}
+.c{padding-left:10px;position:relative}
+.c::before{
+  content:"";position:absolute;left:-5.5px;top:8px;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--ground);border:1.5px solid var(--line);
+}
+li.is-key .c::before{background:var(--accent);border-color:var(--accent)}
+li.is-move .c::before{width:7px;height:7px;left:-4.5px;top:9px;border-style:solid}
+.c .ttl{font-weight:600;line-height:1.45}
+.c .note{font-size:.84rem;color:var(--ink-2);margin-top:2px}
+
+/* ---------- transit chip ---------- */
+.leg{
+  display:flex;align-items:flex-start;gap:8px;
+  background:var(--surface);border:1px solid var(--line-soft);
+  border-left:3px solid var(--ln,var(--walk));
+  border-radius:3px;padding:7px 10px;margin-top:2px;
+}
+.leg .lname{
+  font-size:.78rem;font-weight:700;color:var(--ln,var(--ink-2));
+  white-space:nowrap;padding-top:1px;
+}
+.leg .ldet{font-size:.82rem;color:var(--ink-2);flex:1}
+.leg .lfare{
+  font-family:var(--ff-mono);font-size:.78rem;color:var(--muted);
+  font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:1px;
+}
+.ln-jr{--ln:var(--jr)} .ln-kara{--ln:var(--karasuma)} .ln-hankyu{--ln:var(--hankyu)}
+.ln-tani{--ln:var(--tanimachi)} .ln-naga{--ln:var(--nagahori)} .ln-mido{--ln:var(--midosuji)}
+.ln-nankai{--ln:var(--nankai)} .ln-bus{--ln:var(--bus)} .ln-taxi{--ln:var(--taxi)}
+.ln-walk{--ln:var(--walk)}
+
+/* ---------- callouts ---------- */
+.note-box{
+  border-radius:4px;padding:10px 12px;margin:14px 0;
+  font-size:.86rem;line-height:1.6;
+}
+.note-box p{margin:0}
+.note-box p+p{margin-top:6px}
+.note-box strong{font-weight:700}
+.nb-warn{background:var(--warn-soft);color:var(--warn);border-left:3px solid var(--warn)}
+.nb-ok{background:var(--ok-soft);color:var(--ok);border-left:3px solid var(--ok)}
+.nb-info{background:var(--surface-2);color:var(--ink-2);border-left:3px solid var(--line)}
+
+h3.sec{
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+  margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line-soft);
+}
+
+/* ---------- cards / lists ---------- */
+.rows{display:flex;flex-direction:column;gap:8px}
+.row{
+  background:var(--surface);border:1px solid var(--line-soft);
+  border-radius:4px;padding:11px 13px;
+}
+.row .rt{font-weight:600;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.row .rt .rp{
+  font-family:var(--ff-mono);font-size:.82rem;color:var(--accent);
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600;
+}
+.row .rd{font-size:.84rem;color:var(--ink-2);margin-top:3px}
+.row .rh{
+  font-family:var(--ff-mono);font-size:.76rem;color:var(--muted);margin-top:4px;
+}
+
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
+a:hover{border-bottom-color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+.maplink{
+  font-size:.78rem;font-family:var(--ff-mono);
+  display:inline-block;margin-top:5px;
+}
+.maplink::before{content:"▸ ";opacity:.6}
+
+/* ---------- fare table ---------- */
+.tblwrap{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:.86rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line-soft)}
+th{
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;
+}
+td.n{font-family:var(--ff-mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tr.total td{border-top:2px solid var(--line);border-bottom:0;font-weight:700;padding-top:10px}
+
+/* ---------- checklist ---------- */
+ul.chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+ul.chk li{
+  display:grid;grid-template-columns:20px 1fr;gap:9px;
+  font-size:.88rem;line-height:1.55;
+}
+ul.chk li::before{
+  content:"";width:15px;height:15px;margin-top:4px;border-radius:3px;
+  border:1.5px solid var(--line);background:var(--surface);
+}
+ul.chk li.done{color:var(--muted)}
+ul.chk li.done::before{
+  background:var(--ok);border-color:var(--ok);
+  content:"✓";color:#fff;font-size:11px;line-height:13px;text-align:center;font-weight:700;
+}
+
+footer{
+  border-top:1px solid var(--line-soft);margin-top:20px;padding:18px 0 34px;
+  font-size:.74rem;color:var(--muted);font-family:var(--ff-mono);
+}
+@media (max-width:400px){
+  ol.tl>li{grid-template-columns:44px 1fr;gap:0 9px}
+  ol.tl>li::before{left:47px}
+  .leg{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <h1>京都・大阪</h1>
+    <div class="sub">2026.09.26 — 09.30　｜　京都糸屋ホテル 4 泊　｜　2 名</div>
+    <div class="flights">
+      <span>去 CX564　TPE 11:05 → KIX 14:50</span>
+      <span>回 CX565　KIX 16:15 → TPE 18:15</span>
+    </div>
+  </div>
+</header>
+
+<nav class="days" aria-label="日期">
+  <div class="days-inner" role="tablist">
+    <button class="daybtn" role="tab" aria-selected="true" aria-controls="d1" id="t1">Day 1<small>9/26 六</small></button>
+    <button class="daybtn" role="tab" aria-selected="false" aria-controls="d2" id="t2">Day 2<small>9/27 日</small></button>
+    <button class="daybtn" role="tab" aria-selected="false" aria-controls="d3" id="t3">Day 3<small>9/28 一</small></button>
+    <button class="daybtn" role="tab" aria-selected="false" aria-controls="d4" id="t4">Day 4<small>9/29 二</small></button>
+    <button class="daybtn" role="tab" aria-selected="false" aria-controls="d5" id="t5">Day 5<small>9/30 三</small></button>
+    <button class="daybtn" role="tab" aria-selected="false" aria-controls="d0" id="t0">總覽<small>費用·提醒</small></button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ DAY 1 ============ -->
+<section class="panel on" id="d1" role="tabpanel" aria-labelledby="t1">
+  <h2 class="dayhead">抵達京都</h2>
+  <div class="daymeta"><span>9/26（六）</span><span>現場交通費 ¥220／人</span></div>
+
+  <div class="note-box nb-warn">
+    <p><strong>はるか 車票已購，需劃位。</strong>落地領完行李後馬上上 <a href="https://guest-ui.west-qr.com/#/">west-qr</a> 劃位。順便確認票含不含運賃——若只含特急券，進站還要刷 Suica 補 ¥1,860。</p>
+  </div>
+
+  <ol class="tl">
+    <li class="is-key"><div class="t key">14:50</div><div class="c"><div class="ttl">KIX 落地</div><div class="note">出關約 15:30–15:45</div></div></li>
+    <li><div class="t"></div><div class="c"><div class="ttl">走到 JR 關西空港站</div><div class="note">跟著 <strong>Railways</strong> 指標上 2 樓 → 走<strong>藍色</strong>的 HARUKA 入口 → <strong>第 4 月台</strong>。別搭成「関空快速」，那是不同路線的普通車。</div></div></li>
+    <li class="is-move"><div class="t">16:00</div><div class="c">
+      <div class="leg ln-jr"><span class="lname">JR はるか</span><span class="ldet">關西空港 → 京都　約 76 分</span><span class="lfare">已購票</span></div>
+      <div class="note">約 30 分一班。沒趕上就搭 16:30，仍來得及晚餐。</div></div></li>
+    <li><div class="t">17:16</div><div class="c"><div class="ttl">京都駅轉乘</div><div class="note">はるか 停 <strong>30 番のりば</strong>（月台最西端）。往東走到底下地下 → JR <strong>地下東口</strong>改札 → 隔壁就是地鐵<strong>中央 2 改札</strong>。抓 10 分。</div></div></li>
+    <li class="is-move"><div class="t">17:30</div><div class="c">
+      <div class="leg ln-kara"><span class="lname">烏丸線</span><span class="ldet">京都 → 四条　2 站 4 分</span><span class="lfare">¥220</span></div>
+      <div class="note">四条駅 <strong>南改札 6 號出口</strong>，步行 5 分到飯店。</div></div></li>
+    <li class="is-key"><div class="t key">17:37</div><div class="c"><div class="ttl">進飯店　京都糸屋ホテル</div><div class="note">下京区烏丸通松原上る薬師前町 712</div></div></li>
+    <li class="is-key"><div class="t key">18:45</div><div class="c"><div class="ttl">晚餐・牛樂亭（燒肉）</div><div class="note">已訂位</div>
+      <a class="maplink" href="https://maps.app.goo.gl/GAxtoRzNrYebeMUt8">地圖</a></div></li>
+    <li><div class="t">晚上</div><div class="c"><div class="ttl">補給</div>
+      <div class="note">Fresco 超市 五條西洞院店（24 小時）· SUGI 藥局 五條烏丸店（09:00–23:00）。都在五条通上，飯店在五条北一條的松原通，順路。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/mb3NKPLGq9JsQrFQ8">Fresco 地圖</a></div></li>
+  </ol>
+
+  <div class="note-box nb-info">
+    <p><strong>落地先做兩件事：</strong>① west-qr 劃位　② 用<strong>現金</strong>把兩支 iPhone 的 Suica 各加值 ¥6,000–7,000（海外卡線上加值常失敗，券売機現金最保險）。</p>
+  </div>
+</section>
+
+<!-- ============ DAY 2 ============ -->
+<section class="panel" id="d2" role="tabpanel" aria-labelledby="t2">
+  <h2 class="dayhead">大阪一日</h2>
+  <div class="daymeta"><span>9/27（日）</span><span>現場交通費 ¥1,540／人</span></div>
+
+  <ol class="tl">
+    <li><div class="t">07:00</div><div class="c"><div class="ttl">早餐・前田珈琲 室町本店</div><div class="note">7:00–18:00。和服店改建的 1981 年本店，約 100 席，座位多不太需要等。飯店步行約 12 分。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/LjmLSmZwog9sz1Lc9">地圖</a></div></li>
+    <li class="is-move"><div class="t">08:20</div><div class="c">
+      <div class="leg ln-hankyu"><span class="lname">阪急京都線</span><span class="ldet">烏丸 → 大阪梅田　<strong>特急／準特急 44 分</strong>・不用換車</span><span class="lfare">¥410</span></div>
+      <div class="note">搭到普通車會慢很多，上車前看月台顯示。</div></div></li>
+    <li class="is-move"><div class="t"></div><div class="c">
+      <div class="leg ln-walk"><span class="lname">步行</span><span class="ldet">阪急大阪梅田 → 東梅田（地下街）　5–8 分</span><span class="lfare">—</span></div>
+      <div class="leg ln-tani"><span class="lname">谷町線</span><span class="ldet">東梅田 → 谷町四丁目　7 分</span><span class="lfare">¥240</span></div></div></li>
+    <li class="is-key"><div class="t key">09:30</div><div class="c"><div class="ttl">大阪城天守閣</div>
+      <div class="note"><strong>谷町四丁目 1-B 出口，步行 15–20 分</strong>（大阪城腹地很大，各站都是 15–20 分，沒有更近的站）。天守閣內部 30 分–1 小時，8 層樓：3F、4F 展示最值得看，8F 展望台。</div></div></li>
+    <li><div class="t"></div><div class="c"><div class="ttl">看點</div>
+      <div class="note"><strong>鏡湖池的倒影</strong>是招牌角度；<strong>極楽橋</strong>是往天守閣最短的路，過橋的角度最經典；日本最高的石垣在護城河邊。</div></div></li>
+    <li class="is-move"><div class="t">10:30</div><div class="c">
+      <div class="leg ln-naga"><span class="lname">長堀鶴見緑地線</span><span class="ldet">森ノ宮 → 心斎橋　<strong>直達 8 分</strong></span><span class="lfare">¥240</span></div>
+      <div class="note"><strong>谷町四丁目進、森ノ宮出</strong>，往東走不折返。</div></div></li>
+    <li><div class="t">10:45</div><div class="c"><div class="ttl">心齋橋購物（北段）</div>
+      <div class="note">心斎橋站出站就是。<strong>無印良品</strong>（PARCO 7F，站直結，10:00 開）→ <strong>UNIQLO</strong> → <strong>GU</strong>。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/B3n8njsDPeF7VZaJA">無印</a>
+      <a class="maplink" href="https://maps.app.goo.gl/P4dXL7yHzR5tYzbg9">UNIQLO</a>
+      <a class="maplink" href="https://maps.app.goo.gl/bRbtRNpNW6U8AfgN8">GU</a></div></li>
+    <li class="is-key"><div class="t key">11:00</div><div class="c"><div class="ttl">中餐・道頓堀 美津の</div>
+      <div class="note">昭和 20 年創業，第三代。<strong>名物「山芋焼」</strong>——麵糊只用山藥、不加高湯。11:00–22:00，<strong>無休</strong>。</div>
+      <div class="note"><strong>每天大排長龍</strong>，建議一開門就到。或一人排隊、一人去買 MooKEN 泡芙。</div></div></li>
+    <li><div class="t"></div><div class="c"><div class="ttl">MooKEN（泡芙）</div><div class="note">心齋橋筋 1-5-26。11:00–15:00 賣完為止。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/CCAYpgGYEYnqsQqz8">地圖</a></div></li>
+    <li><div class="t">下午</div><div class="c"><div class="ttl">一路往南逛</div>
+      <div class="note">KUKURU 章魚燒 → <strong>DAISO 心斎橋筋2丁目店</strong>（3 層樓，關西最大級，10:00–22:00）</div>
+      <a class="maplink" href="https://maps.app.goo.gl/wx7t75cxcCyq3abk8">KUKURU</a>
+      <a class="maplink" href="https://maps.app.goo.gl/3vMmV1MDdv22CXRo6">DAISO</a></div></li>
+    <li class="is-key"><div class="t key">16:00</div><div class="c"><div class="ttl">大阪高島屋 ＋ なんばCITY</div>
+      <div class="note"><strong>一保堂（茶類伴手禮）在高島屋 B1F 食品樓層。</strong>找不到就問 1 樓服務台。</div>
+      <div class="note"><strong>3COINS+plus 和 UNIQLO 都在 なんばCITY 本館 B2F</strong>（11:00–21:00）。兩館與南海難波站相連，走路就通。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/dgyDxvGeAma9CpTk9">高島屋</a></div></li>
+    <li class="is-key"><div class="t key">18:30</div><div class="c"><div class="ttl">晚餐・金龍ラーメン 戎橋筋店</div><div class="note">清爽豚骨，韭菜泡菜自助免費，24 小時營業。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/ndbKV2TLrnUAXXEW8">地圖</a></div></li>
+    <li><div class="t">19:30</div><div class="c"><div class="ttl">道頓堀夜景</div></div></li>
+    <li class="is-move"><div class="t">20:30</div><div class="c">
+      <div class="leg ln-mido"><span class="lname">御堂筋線</span><span class="ldet">なんば → 梅田　8 分</span><span class="lfare">¥240</span></div>
+      <div class="leg ln-hankyu"><span class="lname">阪急京都線</span><span class="ldet">大阪梅田 → 烏丸　44 分</span><span class="lfare">¥410</span></div>
+      <div class="note"><strong>回程在「なんば」上車</strong>（道頓堀走過去約 5 分），不用走回心斎橋站——心齋橋的店在往南的路上就逛完了。</div></div></li>
+  </ol>
+
+  <div class="note-box nb-info">
+    <p><strong>不買一日券。</strong>エンジョイエコカード 是實體磁卡、不能放進 Suica，當天 Metro 只花 ¥720，一日券土日祝 ¥620 只省 ¥100，不值得跑售票機。</p>
+  </div>
+</section>
+
+<!-- ============ DAY 3 ============ -->
+<section class="panel" id="d3" role="tabpanel" aria-labelledby="t3">
+  <h2 class="dayhead">清水寺・祇園</h2>
+  <div class="daymeta"><span>9/28（一）</span><span>計程車 ¥650–900／人</span></div>
+
+  <div class="note-box nb-warn">
+    <p><strong>前一晚就要準備兩件事：</strong>① 在 Fresco 或超商<strong>買好早餐</strong>（7:00 出門時京都店家都還沒開）　② 請飯店櫃檯<strong>預約 7:00 的計程車</strong>（那個時間路邊不一定攔得到）。</p>
+    <p>清水寺<strong>拝観料 ¥500／人，只收現金</strong>，不能刷卡也不能刷 Suica。</p>
+  </div>
+
+  <ol class="tl">
+    <li class="is-move"><div class="t key">07:00</div><div class="c">
+      <div class="leg ln-taxi"><span class="lname">計程車</span><span class="ldet">飯店 → 清水寺　12–15 分</span><span class="lfare">¥1,300–1,800</span></div>
+      <div class="note">比巴士貴 ¥420–670／人，換「8:00 前一定到」的確定性，還省掉一段上坡。</div></div></li>
+    <li class="is-key"><div class="t key">07:30</div><div class="c"><div class="ttl">清水寺</div>
+      <div class="note"><strong>務必 8:00 前抵達</strong>，之後團客潮湧入就完全不同了。6:00 開門，9 月 18:00 閉門。</div>
+      <div class="note">走法：本堂（清水舞台）→ 奧之院（<strong>拍舞台全景的最佳角度</strong>）→ 音羽の滝，約 70–90 分。</div></div></li>
+    <li><div class="t"></div><div class="c"><div class="ttl">隨求堂「胎內巡禮」　¥100</div><div class="note">摸黑扶牆走一圈模擬胎內的通道，約 10 分。便宜又特別。開放時間通常晚於 6:00，現場看。</div></div></li>
+    <li><div class="t">08:45</div><div class="c"><div class="ttl">三年坂（拍八坂之塔）→ 二年坂</div></div></li>
+    <li><div class="t">09:00</div><div class="c"><div class="ttl">星巴克 二寧坂ヤサカ茶屋店</div><div class="note">8:00 開。大正數寄屋風町家、51 席。只有三明治等輕食，沒有早餐套餐。</div>
+      <a class="maplink" href="https://store.starbucks.co.jp/detail-1476/">官方頁</a></div></li>
+    <li><div class="t">09:20</div><div class="c"><div class="ttl">慢慢逛二年坂・三年坂</div><div class="note">高台寺不進去（省 ¥800／人），時間挪來逛這裡。寧寧之道、石塀小路照走——免費，而且就是最有味道的那段。</div></div></li>
+    <li class="is-key"><div class="t key">11:00</div><div class="c"><div class="ttl">午餐・京料理 高台寺 羽柴</div>
+      <div class="note">寧寧之道「京・洛市 ねね」2F。11:00–15:00。湯豆腐一人鍋 ＋ 自家製撈起湯葉配三種醬。建議一開門就進，避開排隊。</div>
+      <a class="maplink" href="https://www.kodaiji-hashiba.co.jp/">官網</a></div></li>
+    <li><div class="t">12:30</div><div class="c"><div class="ttl">八坂神社 → 花見小路</div>
+      <div class="note">八坂神社境內<strong>免費、全天開放</strong>。花見小路<strong>私人道路禁止拍攝的區域有罰則</strong>，看到告示就收相機。</div></div></li>
+    <li><div class="t">下午</div><div class="c"><div class="ttl">自由逛街</div>
+      <div class="note">不排行程，自行導航。固定的一站：<strong>3COINS+plus 河原町 OPA 店</strong>。傍晚到鴨川河邊坐一下（免費），經過時看一眼納涼床即可。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/hkkohWpwMiXdLoKp8">3COINS</a></div></li>
+    <li class="is-key"><div class="t key">19:30</div><div class="c"><div class="ttl">晚餐・しゃぶしゃぶ／すき焼き 食べ放題 三条河原町店</div>
+      <div class="note"><strong>已訂位</strong>（Google 訂位）。走了一早上，晚上吃到飽最划算。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/cJS8Hq9WgsXz5AtR8">地圖</a></div></li>
+    <li class="is-move"><div class="t">21:00</div><div class="c">
+      <div class="leg ln-walk"><span class="lname">步行</span><span class="ldet">三条河原町 → 飯店　約 25 分</span><span class="lfare">¥0</span></div>
+      <div class="note">或走到阪急京都河原町搭一站到烏丸（¥170）再走 8 分——時間差不多，看腳力決定。</div></div></li>
+  </ol>
+</section>
+
+<!-- ============ DAY 4 ============ -->
+<section class="panel" id="d4" role="tabpanel" aria-labelledby="t4">
+  <h2 class="dayhead">金閣寺・錦市場</h2>
+  <div class="daymeta"><span>9/29（二）</span><span>交通 ¥720／人・門票 ¥500／人</span></div>
+
+  <div class="note-box nb-warn">
+    <p><strong>錦市場禁止邊走邊吃。</strong>2019 年起明文規定，買了要在店前的內用區或站定吃完再走。</p>
+    <p><strong>金閣寺門票 ¥500／人，記得帶現金。</strong></p>
+  </div>
+
+  <ol class="tl">
+    <li><div class="t">07:00</div><div class="c"><div class="ttl">早餐・小川珈琲 堺町錦店</div><div class="note">7:00 開，京町家改建，就在錦市場旁、離飯店近。步行約 10 分。</div></div></li>
+    <li class="is-move"><div class="t">08:20</div><div class="c">
+      <div class="leg ln-kara"><span class="lname">烏丸線</span><span class="ldet">四条 → 北大路　9 分</span><span class="lfare">¥260</span></div>
+      <div class="leg ln-bus"><span class="lname">市巴士 204／205</span><span class="ldet">北大路 → 金閣寺道　約 10 分・<strong>巴士總站與車站直結</strong></span><span class="lfare">¥230</span></div>
+      <div class="note">不搭 12 系統直達是因為<strong>會塞車</strong>。要趕 9:00 開門，多 ¥260 買準點性。</div></div></li>
+    <li class="is-key"><div class="t key">09:00</div><div class="c"><div class="ttl">金閣寺（開門即進）</div>
+      <div class="note">¥500／人，9:00–17:00，年中無休。所要 30–40 分，慢慢走約 1 小時。10:00 後遊覽車團客湧入。</div>
+      <div class="note">看點：<strong>鏡湖池的「逆さ金閣」</strong>（水面倒影，招牌角度）；往上走到<strong>夕佳亭那座丘回頭看的「見返り金閣」</strong>是內行人的角度。拝観券是<strong>御札造型</strong>，可以留著當紀念。</div></div></li>
+    <li class="is-move"><div class="t">10:00</div><div class="c">
+      <div class="leg ln-bus"><span class="lname">市巴士 12</span><span class="ldet">金閣寺道 → 四条烏丸　約 40 分</span><span class="lfare">¥230</span></div>
+      <div class="note">回程不趕時間，改搭直達的 12 系統，省 ¥260 又直接到寶可夢中心。</div></div></li>
+    <li class="is-key"><div class="t key">10:45</div><div class="c"><div class="ttl">寶可夢中心 京都店</div>
+      <div class="note">SUINA室町 2F，地鐵四条駅／阪急烏丸駅 <strong>26 號出口直結</strong>。10:00–20:00。離飯店很近，買太多可以先回房放。</div>
+      <div class="note"><strong>代購（素菱）：</strong>洛奇亞玩偶・藝妓皮卡丘（京都限定，一進店先問店員有無現貨）・購物袋</div>
+      <a class="maplink" href="https://maps.app.goo.gl/hZYihq3TBSrotWzaA">地圖</a></div></li>
+    <li class="is-key"><div class="t key">11:30</div><div class="c"><div class="ttl">錦市場（中餐）</div>
+      <div class="note">全長 390m、約 130 家店，多數 9:00–10:00 開、18:00 收。<strong>9/29 是週二，避開了多數店的週三公休。</strong></div>
+      <div class="note"><strong>三木鶏卵</strong>——だし巻き卵。昭和 3 年創業，利尻昆布＋鰹節高湯，只外帶，店頭看得到職人現煎。9:00–17:00。</div>
+      <div class="note"><strong>こんなもんじゃ</strong>——豆乳甜甜圈，店頭現炸。糖漿可選焦糖／巧克力／黑糖黃豆粉／蘋果肉桂。</div>
+      <div class="note">也逛 Sundrug Nishiki。</div></div></li>
+    <li><div class="t">13:30</div><div class="c"><div class="ttl">SLOW 京都（皮革製品）</div><div class="note">中京区蛸屋町 160，京町家改建、店內深處有後院。平日 11:00–19:30。順路過去看一眼，沒開就算了。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/PkTQ31LwcYnXEgmr7">地圖</a></div></li>
+    <li><div class="t">14:00</div><div class="c"><div class="ttl">新京極・寺町京極商店街</div>
+      <div class="note">兩條平行的拱廊商店街，寺町京極約 170 家店，新京極是日本第二古老的商店街。有頂棚，下雨也能逛。</div>
+      <div class="note"><strong>錦市場由西往東逛到底，東端出來就接新京極</strong>，中間就是錦天満宮（免費）。</div>
+      <div class="note"><strong>ロンドン焼</strong>（四条通進新京極的入口附近）——戰後至今京都人吃到大的懷舊點心，小顆カステラ皮包白豆餡。</div>
+      <div class="note"><strong>LOFT</strong> 在 MINA京都（河原町三条下ル，11:00–21:00），生活雜貨文具，台灣沒有。<strong>ドン・キホーテ 京都四条河原町店</strong>營業到很晚。<span style="opacity:.7">藤井大丸整修中。</span></div></div></li>
+    <li class="is-key"><div class="t key">17:00</div><div class="c"><div class="ttl">中村藤吉 四条店（抹茶甜點）</div>
+      <div class="note">京都高島屋 S.C.「T8」3F。10:00–20:00，<strong>L.O. 19:00</strong>。避開 14:00–16:00 的下午茶尖峰，平日晚間人潮最鬆。逛完新京極直接下樓進場，零繞路。</div>
+      <a class="maplink" href="https://www.takashimaya.co.jp/kyoto/specialtystores/shop/10044">官方頁</a></div></li>
+    <li><div class="t">18:30</div><div class="c"><div class="ttl">スギ薬局 四条河原町店</div>
+      <a class="maplink" href="https://maps.app.goo.gl/R2x5fKCaMU2QpoNQ8">地圖</a></div></li>
+    <li><div class="t">19:00</div><div class="c"><div class="ttl">晚餐・留白</div>
+      <div class="note">當天看心情。<strong>提醒：</strong>17:00 剛吃完抹茶甜點，別太重；四条河原町／木屋町一帶最順。這趟已吃過燒肉、湯豆腐、涮涮鍋吃到飽、拉麵、大阪燒。</div></div></li>
+  </ol>
+</section>
+
+<!-- ============ DAY 5 ============ -->
+<section class="panel" id="d5" role="tabpanel" aria-labelledby="t5">
+  <h2 class="dayhead">黑門市場・返程</h2>
+  <div class="daymeta"><span>9/30（三）</span><span>交通 ¥1,620／人</span></div>
+
+  <div class="note-box nb-ok">
+    <p><strong>行李走 SFSD 宅配直送機場。</strong>9:00 寄飯店櫃檯 → 13:45 送達機場，4 件 NT$2,200。今天全程空手。</p>
+  </div>
+
+  <div class="note-box nb-warn">
+    <p><strong>寄出前一定要取出：</strong>行動電源／鋰電池（不能託運）、護照、錢包、手機、充電線、外套、藥品——<strong>行李 9:00 就離開你們了，到 13:45 為止都拿不到。</strong>前一晚就要打包完畢。</p>
+  </div>
+
+  <ol class="tl">
+    <li class="is-key"><div class="t key">09:00</div><div class="c"><div class="ttl">退房・行李交給櫃檯</div><div class="note">4 件（2 大 2 小）交給 SFSD。</div></div></li>
+    <li class="is-move"><div class="t">09:15</div><div class="c">
+      <div class="leg ln-hankyu"><span class="lname">阪急京都線</span><span class="ldet">烏丸 → 大阪梅田　44 分</span><span class="lfare">¥410</span></div>
+      <div class="leg ln-mido"><span class="lname">御堂筋線</span><span class="ldet">梅田 → なんば　8 分</span><span class="lfare">¥240</span></div></div></li>
+    <li class="is-key"><div class="t key">10:45</div><div class="c"><div class="ttl">黑門市場</div>
+      <div class="note">9:00–18:00（各店不一）。從なんば步行約 10 分。丼飯現場看、隨便挑。</div>
+      <div class="note"><span style="opacity:.75">參考：千成屋（約 90 席，不用等位，5 種海鮮丼 ¥2,000）／黒門三平（海鮮丼 ¥1,500，人氣第一，中午前常賣完）／深廣（1905 年創業，可自選配料的「えらんで丼」¥1,620）</span></div></div></li>
+    <li class="is-key"><div class="t key">12:40</div><div class="c"><div class="ttl">離開黑門市場</div><div class="note">不用取行李，比原案多待 15 分。步行至南海難波站約 10 分。</div></div></li>
+    <li class="is-move"><div class="t key">12:53</div><div class="c">
+      <div class="leg ln-nankai"><span class="lname">南海 空港急行</span><span class="ldet">難波 → 關西空港　<strong>45 分</strong>・刷 Suica 免買票・約 15 分一班</span><span class="lfare">¥970</span></div>
+      <div class="note"><strong>13:00 前一定要上車</strong>才趕得上 13:45 到機場。實際班次當天用 APP 確認。</div></div></li>
+    <li class="is-key"><div class="t key">13:38</div><div class="c"><div class="ttl">抵達關西空港</div>
+      <div class="note">JR 與南海的關西空港站是<strong>同一棟站舍</strong>，都在 2 樓，<strong>與第 1 航廈 2 樓直結、步行約 5 分</strong>。</div></div></li>
+    <li class="is-key"><div class="t key">13:45</div><div class="c"><div class="ttl">第 1 航廈・領 SFSD 送達的行李</div></div></li>
+    <li><div class="t">14:15</div><div class="c"><div class="ttl">值機</div><div class="note">距起飛還有 2.5 小時，很寬裕。</div></div></li>
+    <li class="is-key"><div class="t key">16:15</div><div class="c"><div class="ttl">CX565 起飛</div><div class="note">KIX 16:15 → TPE 18:15</div></div></li>
+  </ol>
+
+  <div class="note-box nb-info">
+    <p><strong>想在黑門市場多待 10 分鐘？</strong>改搭 ラピート（37–42 分），13:00 發也能 13:42 到。代價是多 ¥520／人＋要買特急券。α 和 β 票價相同、白天交替運行，來哪班搭哪班，β 只慢 2–3 分。</p>
+  </div>
+</section>
+
+<!-- ============ 總覽 ============ -->
+<section class="panel" id="d0" role="tabpanel" aria-labelledby="t0">
+  <h2 class="dayhead">總覽</h2>
+  <div class="daymeta"><span>費用・提醒・待辦</span></div>
+
+  <h3 class="sec">出發前要做</h3>
+  <ul class="chk">
+    <li>裝好並測試地鐵 APP：<strong>Japan Transit Planner</strong>（台灣 App Store 可下載，繁中，顯示轉乘站與<strong>月台號碼</strong>）。試查一次「烏丸 → 大阪梅田」確認看得懂</li>
+    <li>前一晚打包完畢（Day 5 行李 9:00 就要交出去）</li>
+    <li>行動電源、當天用品從託運行李取出</li>
+  </ul>
+
+  <h3 class="sec">落地當天</h3>
+  <ul class="chk">
+    <li>領完行李馬上上 west-qr 劃位（9/26 是週六，指定席可能被吃掉；沒位就往後挑一班，16:30 那班仍來得及晚餐）</li>
+    <li>用<strong>現金</strong>把兩支 iPhone 的 Suica 各加值 ¥6,000–7,000</li>
+  </ul>
+
+  <h3 class="sec">旅途中</h3>
+  <ul class="chk">
+    <li>9/27 晚上買好隔天早餐（Day 3 七點出門，店都沒開）</li>
+    <li>請飯店櫃檯預約 9/28 早上 7:00 的計程車</li>
+    <li>寶可夢代購：洛奇亞玩偶・藝妓皮卡丘・購物袋</li>
+    <li>一保堂買茶（Day 2，大阪高島屋 B1F）</li>
+  </ul>
+
+  <h3 class="sec">已訂位</h3>
+  <div class="rows">
+    <div class="row"><div class="rt">牛樂亭（燒肉）<span class="rp">9/26　18:45</span></div><div class="rd">Day 1 晚餐</div></div>
+    <div class="row"><div class="rt">食べ放題 三条河原町店<span class="rp">9/28　19:30</span></div><div class="rd">Day 3 晚餐・Google 訂位</div></div>
+    <div class="row"><div class="rt">京都糸屋ホテル<span class="rp">4 泊</span></div><div class="rd">下京区烏丸通松原上る薬師前町 712　｜　地鐵四条駅 南改札 6 號出口步行 5 分</div></div>
+    <div class="row"><div class="rt">SFSD 行李宅配<span class="rp">9/30　NT$2,200</span></div><div class="rd">9:00 寄飯店櫃檯 → 13:45 送達機場・4 件</div></div>
+  </div>
+
+  <h3 class="sec">現場交通費（每人）</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>天</th><th>內容</th><th class="n">金額</th></tr></thead>
+      <tbody>
+        <tr><td>Day 1</td><td>地鐵 京都→四条（はるか 已購票）</td><td class="n">¥220</td></tr>
+        <tr><td>Day 2</td><td>阪急來回 ¥820 ＋ 大阪Metro ¥720</td><td class="n">¥1,540</td></tr>
+        <tr><td>Day 3</td><td>計程車兩人分攤（晚上走路回去）</td><td class="n">¥650–900</td></tr>
+        <tr><td>Day 4</td><td>地鐵 ¥260 ＋ 巴士 ¥460</td><td class="n">¥720</td></tr>
+        <tr><td>Day 5</td><td>阪急 ¥410 ＋ Metro ¥240 ＋ 南海 ¥970</td><td class="n">¥1,620</td></tr>
+        <tr class="total"><td>合計</td><td>兩人約 ¥9,500–10,000</td><td class="n">¥4,750–5,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note-box nb-info">
+    <p><strong>Suica 各加值 ¥6,000–7,000／人</strong>——交通約 ¥5,000 加上便利商店、零用。餘額上限 ¥20,000。</p>
+    <p><strong>一日券全都不划算</strong>，已逐項算過：京都兩天各只花 ¥460–720（一日券 ¥1,100）；大阪只差 ¥100 而且是實體磁卡、不能上 Suica。</p>
+  </div>
+
+  <h3 class="sec">要帶現金的地方</h3>
+  <div class="rows">
+    <div class="row"><div class="rt">清水寺 拝観料<span class="rp">¥500／人</span></div><div class="rd">只收現金，不能刷卡也不能刷 Suica</div></div>
+    <div class="row"><div class="rt">金閣寺 拝観料<span class="rp">¥500／人</span></div><div class="rd">一併準備現金比較保險</div></div>
+    <div class="row"><div class="rt">Suica 加值<span class="rp">¥6,000–7,000／人</span></div><div class="rd">海外發行信用卡線上加值常失敗，券売機或超商現金最保險</div></div>
+  </div>
+
+  <h3 class="sec">京都 ⇄ 大阪 怎麼選路線</h3>
+  <div class="note-box nb-info">
+    <p>不是比時間，是<strong>比目的地在大阪的哪一區</strong>——三條路線時間都差不多，差別是把你丟在哪、之後還要轉幾次。</p>
+  </div>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>路線</th><th>大阪端</th><th class="n">時間／費用</th></tr></thead>
+      <tbody>
+        <tr><td>阪急京都線（特急）</td><td>大阪梅田</td><td class="n">44 分　¥410</td></tr>
+        <tr><td>阪急→堺筋線直通（準急）</td><td>天下茶屋（經日本橋）<br><span style="color:var(--muted);font-size:.8rem">0 換車</span></td><td class="n">60–79 分　¥600</td></tr>
+        <tr><td>JR 京都線（新快速）</td><td>大阪駅</td><td class="n">29 分　¥580</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note-box nb-info">
+    <p><strong>堺筋線直通是唯一能從京都不換車開進大阪市中心地下鐵網的路線</strong>（列車自己從阪急線開進地下鐵）。但<strong>週末白天每小時只有 3 班</strong>、平日只有早晚各 7 班。上車前看車頭方向幕是不是「天下茶屋行」。</p>
+  </div>
+
+  <h3 class="sec">拖行李搭車</h3>
+  <div class="note-box nb-warn">
+    <p><strong>京都市巴士明文勸阻大型行李。</strong>運送約款上限是三邊合計 1m、10kg（任何行李箱都超標），乘車口貼有「大型荷物の持ち込みご遠慮」貼紙，司機有權在車內擁擠時限制上車。</p>
+    <p><strong>地鐵相反，官方主動引導旅客改搭。</strong>車廂寬、有電梯，帶行李完全正常。</p>
+    <p>這趟真正要拖行李的只有 Day 1（地鐵 2 站）——Day 5 已改用 SFSD 宅配，Day 2／3／4 行李都在飯店。</p>
+  </div>
+
+  <h3 class="sec">這次決定不去 / 不做的</h3>
+  <div class="rows">
+    <div class="row"><div class="rd"><strong>伏見稻荷</strong>——早鳥時段給了清水寺，不想連兩天六點起床</div></div>
+    <div class="row"><div class="rd"><strong>高台寺入內</strong>（¥800／人）——時間改逛二年坂三年坂，寧寧之道與石塀小路本身免費且最有味道</div></div>
+    <div class="row"><div class="rd"><strong>大阪城御座船</strong>（¥1,500／人）、<strong>園內小火車</strong>（¥400／人）——用走的就好</div></div>
+    <div class="row"><div class="rd"><strong>納涼床付費用餐</strong>——經過看一眼，去鴨川河邊免費坐</div></div>
+    <div class="row"><div class="rd"><strong>地主神社</strong>（清水寺境內）——2022 年 8 月起修復閉門，2026 年仍未開放</div></div>
+    <div class="row"><div class="rd"><strong>一蘭拉麵、嵐山</strong>——台灣吃得到／看得到的就不排</div></div>
+  </div>
+
+  <footer>
+    最後更新 2026.09.20　｜　完整資料：travel/京都大阪_2026年9月.md
+  </footer>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.daybtn'));
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  function show(i){
+    tabs.forEach(function(t,j){
+      t.setAttribute('aria-selected', j===i?'true':'false');
+      panels[j].classList.toggle('on', j===i);
+    });
+    try{localStorage.setItem('kyoto-day', String(i));}catch(e){}
+    tabs[i].scrollIntoView({block:'nearest',inline:'center'});
+    window.scrollTo(0,0);
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(i);});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight') n=(i+1)%tabs.length;
+      if(e.key==='ArrowLeft') n=(i-1+tabs.length)%tabs.length;
+      if(n!==null){e.preventDefault();show(n);tabs[n].focus();}
+    });
+  });
+  // 旅途中自動跳到當天
+  var start=0;
+  var today=new Date();
+  var y=today.getFullYear(), m=today.getMonth()+1, d=today.getDate();
+  if(y===2026&&m===9&&d>=26&&d<=30){ start=d-26; }
+  else{
+    try{
+      var saved=localStorage.getItem('kyoto-day');
+      if(saved!==null) start=Math.min(Math.max(parseInt(saved,10)||0,0),tabs.length-1);
+    }catch(e){}
+  }
+  show(start);
+})();
+</script>
+</body>
+</html>
