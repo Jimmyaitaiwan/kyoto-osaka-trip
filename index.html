@@ -270,7 +270,9 @@ ul.chk li::before{
   content:"";width:15px;height:15px;margin-top:4px;border-radius:3px;
   border:1.5px solid var(--line);background:var(--surface);
 }
-ul.chk li.done{color:var(--muted)}
+ul.chk li[role="button"]{cursor:pointer;-webkit-tap-highlight-color:transparent}
+ul.chk li[role="button"]:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+ul.chk li.done{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
 ul.chk li.done::before{
   background:var(--ok);border-color:var(--ok);
   content:"✓";color:#fff;font-size:11px;line-height:13px;text-align:center;font-weight:700;
@@ -308,6 +310,7 @@ footer{
     <button class="daybtn" role="tab" aria-selected="false" aria-controls="d3" id="t3">Day 3<small>9/28 一</small></button>
     <button class="daybtn" role="tab" aria-selected="false" aria-controls="d4" id="t4">Day 4<small>9/29 二</small></button>
     <button class="daybtn" role="tab" aria-selected="false" aria-controls="d5" id="t5">Day 5<small>9/30 三</small></button>
+    <button class="daybtn" role="tab" aria-selected="false" aria-controls="dg" id="tg">伴手禮<small>採購清單</small></button>
     <button class="daybtn" role="tab" aria-selected="false" aria-controls="d0" id="t0">總覽<small>費用·提醒</small></button>
   </div>
 </nav>
@@ -326,15 +329,16 @@ footer{
 
   <ol class="tl">
     <li class="is-key"><div class="t key">14:50</div><div class="c"><div class="ttl">KIX 落地</div><div class="note">出關約 15:30–15:45</div></div></li>
-    <li><div class="t"></div><div class="c"><div class="ttl">走到 JR 關西空港站</div><div class="note">跟著 <strong>Railways</strong> 指標上 2 樓 → 走<strong>藍色</strong>的 HARUKA 入口 → <strong>第 4 月台</strong>。別搭成「関空快速」，那是不同路線的普通車。</div></div></li>
+    <li><div class="t"></div><div class="c"><div class="ttl">走到 JR 關西空港站</div><div class="note">跟著 <strong>Railways</strong> 指標上 2 樓 → 走<strong>藍色</strong>的 HARUKA（はるか）入口 → <strong>第 4 月台</strong>。別搭成「関空快速」（Kanku Kaisoku・機場快速），那是不同路線的普通車。</div></div></li>
     <li class="is-move"><div class="t">16:00</div><div class="c">
-      <div class="leg ln-jr"><span class="lname">JR はるか</span><span class="ldet">關西空港 → 京都　約 76 分</span><span class="lfare">已購票</span></div>
+      <div class="leg ln-jr"><span class="lname">JR はるか（Haruka）</span><span class="ldet">關西空港 → 京都　約 76 分</span><span class="lfare">已購票</span></div>
       <div class="note">約 30 分一班。沒趕上就搭 16:30，仍來得及晚餐。<strong>中途不要下車出站</strong>——官方規定中途下車後剩餘區間即失效。</div></div></li>
-    <li><div class="t">17:16</div><div class="c"><div class="ttl">京都駅轉乘</div><div class="note">はるか 停 <strong>30 番のりば</strong>（月台最西端）。往東走到底下地下 → JR <strong>地下東口</strong>改札 → 隔壁就是地鐵<strong>中央 2 改札</strong>。抓 10 分。</div></div></li>
+    <li><div class="t">17:16</div><div class="c"><div class="ttl">京都駅轉乘</div><div class="note">はるか 停 <strong>30 番のりば</strong>（Noriba・第 30 月台，最西端）。往東走到底下地下 → JR <strong>地下東口</strong>改札（Kaisatsu・剪票口） → 隔壁就是地鐵<strong>中央 2 改札</strong>（剪票口）。抓 10 分。</div></div></li>
     <li class="is-move"><div class="t">17:30</div><div class="c">
       <div class="leg ln-kara"><span class="lname">烏丸線</span><span class="ldet">京都 → 四条　2 站 4 分<br><span style="font-size:.78rem;color:var(--muted)">地下鐵不是 JR，HARUKA 票不涵蓋，要另外刷 Suica</span></span><span class="lfare">¥220</span></div>
       <div class="note">四条駅 <strong>南改札 6 號出口</strong>，步行 5 分到飯店。</div></div></li>
-    <li class="is-key"><div class="t key">17:37</div><div class="c"><div class="ttl">進飯店　京都糸屋ホテル</div><div class="note">下京区烏丸通松原上る薬師前町 712</div></div></li>
+    <li class="is-key"><div class="t key">17:37</div><div class="c"><div class="ttl">進飯店　京都糸屋ホテル（Kyoto Itoya Hotel）</div><div class="note">下京区烏丸通松原上る薬師前町 712</div>
+      <a class="maplink" href="https://maps.app.goo.gl/yMay381gYvzS99maA">地圖</a></div></li>
     <li class="is-key"><div class="t key">18:45</div><div class="c"><div class="ttl">晚餐・牛樂亭（燒肉）</div><div class="note">已訂位</div>
       <a class="maplink" href="https://maps.app.goo.gl/GAxtoRzNrYebeMUt8">地圖</a></div></li>
     <li><div class="t">晚上</div><div class="c"><div class="ttl">補給</div>
@@ -353,7 +357,7 @@ footer{
   <div class="daymeta"><span>9/27（日）</span><span>現場交通費 ¥1,540／人</span></div>
 
   <ol class="tl">
-    <li><div class="t">07:00</div><div class="c"><div class="ttl">早餐・前田珈琲 室町本店</div><div class="note">7:00–18:00。和服店改建的 1981 年本店，約 100 席，座位多不太需要等。飯店步行約 12 分。</div>
+    <li><div class="t">07:00</div><div class="c"><div class="ttl">早餐・前田珈琲 室町本店（Maeda Coffee）</div><div class="note">7:00–18:00。和服店改建的 1981 年本店，約 100 席，座位多不太需要等。飯店步行約 12 分。</div>
       <a class="maplink" href="https://maps.app.goo.gl/LjmLSmZwog9sz1Lc9">地圖</a></div></li>
     <li class="is-move"><div class="t">08:20</div><div class="c">
       <div class="leg ln-hankyu"><span class="lname">阪急京都線</span><span class="ldet">烏丸 → 大阪梅田　<strong>特急／準特急 44 分</strong>・不用換車</span><span class="lfare">¥410</span></div>
@@ -364,7 +368,9 @@ footer{
     <li class="is-key"><div class="t key">09:30</div><div class="c"><div class="ttl">大阪城天守閣</div>
       <div class="note"><strong>谷町四丁目 1-B 出口，步行 15–20 分</strong>（大阪城腹地很大，各站都是 15–20 分，沒有更近的站）。天守閣內部 30 分–1 小時，8 層樓：3F、4F 展示最值得看，8F 展望台。</div></div></li>
     <li><div class="t"></div><div class="c"><div class="ttl">看點</div>
-      <div class="note"><strong>鏡湖池的倒影</strong>是招牌角度；<strong>極楽橋</strong>是往天守閣最短的路，過橋的角度最經典；日本最高的石垣在護城河邊。</div></div></li>
+      <div class="note"><strong>鏡湖池的倒影</strong>是招牌角度；<strong>極楽橋</strong>是往天守閣最短的路，過橋的角度最經典；日本最高的石垣在護城河邊。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/PQaSRWUYuCPa6FL98">地圖</a>
+      <a class="maplink" href="https://osaka.letsgojp.com/archives/52790/">玩法攻略</a></div></li>
     <li class="is-move"><div class="t">10:30</div><div class="c">
       <div class="leg ln-naga"><span class="lname">長堀鶴見緑地線</span><span class="ldet">森ノ宮 → 心斎橋　<strong>直達 8 分</strong></span><span class="lfare">¥240</span></div>
       <div class="note"><strong>谷町四丁目進、森ノ宮出</strong>，往東走不折返。</div></div></li>
@@ -373,9 +379,10 @@ footer{
       <a class="maplink" href="https://maps.app.goo.gl/B3n8njsDPeF7VZaJA">無印</a>
       <a class="maplink" href="https://maps.app.goo.gl/P4dXL7yHzR5tYzbg9">UNIQLO</a>
       <a class="maplink" href="https://maps.app.goo.gl/bRbtRNpNW6U8AfgN8">GU</a></div></li>
-    <li class="is-key"><div class="t key">11:00</div><div class="c"><div class="ttl">中餐・道頓堀 美津の</div>
-      <div class="note">昭和 20 年創業，第三代。<strong>名物「山芋焼」</strong>——麵糊只用山藥、不加高湯。11:00–22:00，<strong>無休</strong>。</div>
-      <div class="note"><strong>每天大排長龍</strong>，建議一開門就到。或一人排隊、一人去買 MooKEN 泡芙。</div></div></li>
+    <li class="is-key"><div class="t key">11:00</div><div class="c"><div class="ttl">中餐・道頓堀 美津の（Mizuno）</div>
+      <div class="note">昭和 20 年創業，第三代。<strong>名物「山芋焼」</strong>（山藥燒）——麵糊只用山藥、不加高湯。11:00–22:00，<strong>無休</strong>。</div>
+      <div class="note"><strong>每天大排長龍</strong>，建議一開門就到。或一人排隊、一人去買 MooKEN 泡芙。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/gUgsZEWCMTCfLxD89">地圖</a></div></li>
     <li><div class="t"></div><div class="c"><div class="ttl">MooKEN（泡芙）</div><div class="note">心齋橋筋 1-5-26。11:00–15:00 賣完為止。</div>
       <a class="maplink" href="https://maps.app.goo.gl/CCAYpgGYEYnqsQqz8">地圖</a></div></li>
     <li><div class="t">下午</div><div class="c"><div class="ttl">一路往南逛</div>
@@ -384,19 +391,22 @@ footer{
       <a class="maplink" href="https://maps.app.goo.gl/3vMmV1MDdv22CXRo6">DAISO</a></div></li>
     <li class="is-key"><div class="t key">16:00</div><div class="c"><div class="ttl">大阪高島屋 ＋ なんばCITY</div>
       <div class="note"><strong>一保堂（茶類伴手禮）在高島屋 B1F 食品樓層。</strong>找不到就問 1 樓服務台。</div>
-      <div class="note"><strong>3COINS+plus 和 UNIQLO 都在 なんばCITY 本館 B2F</strong>（11:00–21:00）。兩館與南海難波站相連，走路就通。</div>
+      <div class="note"><strong>3COINS+plus 和 UNIQLO 都在 なんばCITY（Namba City）本館 B2F</strong>（11:00–21:00）。兩館與南海難波站相連，走路就通。</div>
       <a class="maplink" href="https://maps.app.goo.gl/dgyDxvGeAma9CpTk9">高島屋</a></div></li>
-    <li class="is-key"><div class="t key">18:30</div><div class="c"><div class="ttl">晚餐・金龍ラーメン 戎橋筋店</div><div class="note">清爽豚骨，韭菜泡菜自助免費，24 小時營業。</div>
+    <li class="is-key"><div class="t key">18:30</div><div class="c"><div class="ttl">晚餐・金龍ラーメン（拉麵）戎橋筋店</div><div class="note">清爽豚骨，韭菜泡菜自助免費，24 小時營業。</div>
       <a class="maplink" href="https://maps.app.goo.gl/ndbKV2TLrnUAXXEW8">地圖</a></div></li>
     <li><div class="t">19:30</div><div class="c"><div class="ttl">道頓堀夜景</div></div></li>
     <li class="is-move"><div class="t">20:30</div><div class="c">
-      <div class="leg ln-mido"><span class="lname">御堂筋線</span><span class="ldet">なんば → 梅田　8 分</span><span class="lfare">¥240</span></div>
+      <div class="leg ln-mido"><span class="lname">御堂筋線</span><span class="ldet">なんば（難波）→ 梅田　8 分</span><span class="lfare">¥240</span></div>
       <div class="leg ln-hankyu"><span class="lname">阪急京都線</span><span class="ldet">大阪梅田 → 烏丸　44 分</span><span class="lfare">¥410</span></div>
-      <div class="note"><strong>回程在「なんば」上車</strong>（道頓堀走過去約 5 分），不用走回心斎橋站——心齋橋的店在往南的路上就逛完了。</div></div></li>
+      <div class="note"><strong>回程在「なんば」（難波）上車</strong>（道頓堀走過去約 5 分），不用走回心斎橋站——心齋橋的店在往南的路上就逛完了。</div></div></li>
+    <li class="is-key"><div class="t key">21:30</div><div class="c"><div class="ttl">⚠️ 回京都後：買明天的早餐</div>
+      <div class="note"><strong>今晚一定要買</strong>——明天 7:00 出門去清水寺，京都店家那時全都還沒開。Fresco 超市 五條西洞院店 24 小時營業，或飯店附近超商。麵包、飯糰都行。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/mb3NKPLGq9JsQrFQ8">Fresco 超市</a></div></li>
   </ol>
 
   <div class="note-box nb-info">
-    <p><strong>不買一日券。</strong>エンジョイエコカード 是實體磁卡、不能放進 Suica，當天 Metro 只花 ¥720，一日券土日祝 ¥620 只省 ¥100，不值得跑售票機。</p>
+    <p><strong>不買一日券。</strong>エンジョイエコカード（Enjoy Eco Card 一日券）是實體磁卡、不能放進 Suica，當天 Metro 只花 ¥720，一日券土日祝 ¥620 只省 ¥100，不值得跑售票機。</p>
   </div>
 </section>
 
@@ -416,21 +426,22 @@ footer{
       <div class="note">比巴士貴 ¥420–670／人，換「8:00 前一定到」的確定性，還省掉一段上坡。</div></div></li>
     <li class="is-key"><div class="t key">07:30</div><div class="c"><div class="ttl">清水寺</div>
       <div class="note"><strong>務必 8:00 前抵達</strong>，之後團客潮湧入就完全不同了。6:00 開門，9 月 18:00 閉門。</div>
-      <div class="note">走法：本堂（清水舞台）→ 奧之院（<strong>拍舞台全景的最佳角度</strong>）→ 音羽の滝，約 70–90 分。</div></div></li>
+      <div class="note">走法：本堂（清水舞台）→ 奧之院（<strong>拍舞台全景的最佳角度</strong>）→ 音羽の滝（Otowa 瀑布），約 70–90 分。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/29y8hZQuozoGmctu7">地圖</a></div></li>
     <li><div class="t"></div><div class="c"><div class="ttl">隨求堂「胎內巡禮」　¥100</div><div class="note">摸黑扶牆走一圈模擬胎內的通道，約 10 分。便宜又特別。開放時間通常晚於 6:00，現場看。</div></div></li>
     <li><div class="t">08:45</div><div class="c"><div class="ttl">三年坂（拍八坂之塔）→ 二年坂</div></div></li>
-    <li><div class="t">09:00</div><div class="c"><div class="ttl">星巴克 二寧坂ヤサカ茶屋店</div><div class="note">8:00 開。大正數寄屋風町家、51 席。只有三明治等輕食，沒有早餐套餐。</div>
-      <a class="maplink" href="https://store.starbucks.co.jp/detail-1476/">官方頁</a></div></li>
+    <li><div class="t">09:00</div><div class="c"><div class="ttl">星巴克 二寧坂ヤサカ茶屋店（Yasaka 茶屋）</div><div class="note">8:00 開。大正數寄屋風町家、51 席。只有三明治等輕食，沒有早餐套餐。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/D9axK3pV42vyZ9DE9">地圖</a></div></li>
     <li><div class="t">09:20</div><div class="c"><div class="ttl">慢慢逛二年坂・三年坂</div><div class="note">高台寺不進去（省 ¥800／人），時間挪來逛這裡。寧寧之道、石塀小路照走——免費，而且就是最有味道的那段。</div></div></li>
-    <li class="is-key"><div class="t key">11:00</div><div class="c"><div class="ttl">午餐・京料理 高台寺 羽柴</div>
-      <div class="note">寧寧之道「京・洛市 ねね」2F。11:00–15:00。湯豆腐一人鍋 ＋ 自家製撈起湯葉配三種醬。建議一開門就進，避開排隊。</div>
-      <a class="maplink" href="https://www.kodaiji-hashiba.co.jp/">官網</a></div></li>
+    <li class="is-key"><div class="t key">11:00</div><div class="c"><div class="ttl">午餐・京料理 高台寺 羽柴（Hashiba）</div>
+      <div class="note">寧寧之道「京・洛市 ねね」（Nene）2F。11:00–15:00。湯豆腐一人鍋 ＋ 自家製撈起湯葉配三種醬。建議一開門就進，避開排隊。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/EisVaa7vzGdpvvKC6">地圖</a>　<a class="maplink" href="https://www.kodaiji-hashiba.co.jp/">官網</a></div></li>
     <li><div class="t">12:30</div><div class="c"><div class="ttl">八坂神社 → 花見小路</div>
       <div class="note">八坂神社境內<strong>免費、全天開放</strong>。花見小路<strong>私人道路禁止拍攝的區域有罰則</strong>，看到告示就收相機。</div></div></li>
     <li><div class="t">下午</div><div class="c"><div class="ttl">自由逛街</div>
       <div class="note">不排行程，自行導航。固定的一站：<strong>3COINS+plus 河原町 OPA 店</strong>。傍晚到鴨川河邊坐一下（免費），經過時看一眼納涼床即可。</div>
       <a class="maplink" href="https://maps.app.goo.gl/hkkohWpwMiXdLoKp8">3COINS</a></div></li>
-    <li class="is-key"><div class="t key">19:30</div><div class="c"><div class="ttl">晚餐・しゃぶしゃぶ／すき焼き 食べ放題 三条河原町店</div>
+    <li class="is-key"><div class="t key">19:30</div><div class="c"><div class="ttl">晚餐・しゃぶしゃぶ／すき焼き 食べ放題（涮涮鍋／壽喜燒 吃到飽）三条河原町店</div>
       <div class="note"><strong>已訂位</strong>（Google 訂位）。走了一早上，晚上吃到飽最划算。</div>
       <a class="maplink" href="https://maps.app.goo.gl/cJS8Hq9WgsXz5AtR8">地圖</a></div></li>
     <li class="is-move"><div class="t">21:00</div><div class="c">
@@ -450,14 +461,16 @@ footer{
   </div>
 
   <ol class="tl">
-    <li><div class="t">07:00</div><div class="c"><div class="ttl">早餐・小川珈琲 堺町錦店</div><div class="note">7:00 開，京町家改建，就在錦市場旁、離飯店近。步行約 10 分。</div></div></li>
+    <li><div class="t">07:00</div><div class="c"><div class="ttl">早餐・小川珈琲 堺町錦店</div><div class="note">7:00 開，京町家改建，就在錦市場旁、離飯店近。步行約 10 分。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/QzQcWq3oSP9Kem5f8">地圖</a></div></li>
     <li class="is-move"><div class="t">08:20</div><div class="c">
       <div class="leg ln-kara"><span class="lname">烏丸線</span><span class="ldet">四条 → 北大路　9 分</span><span class="lfare">¥260</span></div>
       <div class="leg ln-bus"><span class="lname">市巴士 204／205</span><span class="ldet">北大路 → 金閣寺道　約 10 分・<strong>巴士總站與車站直結</strong></span><span class="lfare">¥230</span></div>
       <div class="note">不搭 12 系統直達是因為<strong>會塞車</strong>。要趕 9:00 開門，多 ¥260 買準點性。</div></div></li>
     <li class="is-key"><div class="t key">09:00</div><div class="c"><div class="ttl">金閣寺（開門即進）</div>
       <div class="note">¥500／人，9:00–17:00，年中無休。所要 30–40 分，慢慢走約 1 小時。10:00 後遊覽車團客湧入。</div>
-      <div class="note">看點：<strong>鏡湖池的「逆さ金閣」</strong>（水面倒影，招牌角度）；往上走到<strong>夕佳亭那座丘回頭看的「見返り金閣」</strong>是內行人的角度。拝観券是<strong>御札造型</strong>，可以留著當紀念。</div></div></li>
+      <div class="note">看點：<strong>鏡湖池的「逆さ金閣」</strong>（水面倒影，招牌角度）；往上走到<strong>夕佳亭那座丘回頭看的「見返り金閣」</strong>（回望金閣）是內行人的角度。拝観券是<strong>御札造型</strong>，可以留著當紀念。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/hB2qzNZbRdqQt1nL6">地圖</a></div></li>
     <li class="is-move"><div class="t">10:00</div><div class="c">
       <div class="leg ln-bus"><span class="lname">市巴士 12</span><span class="ldet">金閣寺道 → 四条烏丸　約 40 分</span><span class="lfare">¥230</span></div>
       <div class="note">回程不趕時間，改搭直達的 12 系統，省 ¥260 又直接到寶可夢中心。</div></div></li>
@@ -467,20 +480,21 @@ footer{
       <a class="maplink" href="https://maps.app.goo.gl/hZYihq3TBSrotWzaA">地圖</a></div></li>
     <li class="is-key"><div class="t key">11:30</div><div class="c"><div class="ttl">錦市場（中餐）</div>
       <div class="note">全長 390m、約 130 家店，多數 9:00–10:00 開、18:00 收。<strong>9/29 是週二，避開了多數店的週三公休。</strong></div>
-      <div class="note"><strong>三木鶏卵</strong>——だし巻き卵。昭和 3 年創業，利尻昆布＋鰹節高湯，只外帶，店頭看得到職人現煎。9:00–17:00。</div>
-      <div class="note"><strong>こんなもんじゃ</strong>——豆乳甜甜圈，店頭現炸。糖漿可選焦糖／巧克力／黑糖黃豆粉／蘋果肉桂。</div>
-      <div class="note">也逛 Sundrug Nishiki。</div></div></li>
+      <div class="note"><strong>三木鶏卵</strong>——だし巻き卵（Dashimaki・高湯煎蛋）。昭和 3 年創業，利尻昆布＋鰹節高湯，只外帶，店頭看得到職人現煎。9:00–17:00。</div>
+      <div class="note"><strong>こんなもんじゃ</strong>（Konnamonja）——豆乳甜甜圈，店頭現炸。糖漿可選焦糖／巧克力／黑糖黃豆粉／蘋果肉桂。</div>
+      <div class="note">也逛 Sundrug Nishiki。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/U2V351r2ffgMAFRL6">錦市場地圖</a></div></li>
     <li><div class="t">13:30</div><div class="c"><div class="ttl">SLOW 京都（皮革製品）</div><div class="note">中京区蛸屋町 160，京町家改建、店內深處有後院。平日 11:00–19:30。順路過去看一眼，沒開就算了。</div>
       <a class="maplink" href="https://maps.app.goo.gl/PkTQ31LwcYnXEgmr7">地圖</a></div></li>
     <li><div class="t">14:00</div><div class="c"><div class="ttl">新京極・寺町京極商店街</div>
       <div class="note">兩條平行的拱廊商店街，寺町京極約 170 家店，新京極是日本第二古老的商店街。有頂棚，下雨也能逛。</div>
-      <div class="note"><strong>錦市場由西往東逛到底，東端出來就接新京極</strong>，中間就是錦天満宮（免費）。</div>
-      <div class="note"><strong>ロンドン焼</strong>（四条通進新京極的入口附近）——戰後至今京都人吃到大的懷舊點心，小顆カステラ皮包白豆餡。</div>
-      <div class="note"><strong>LOFT</strong> 在 MINA京都（河原町三条下ル，11:00–21:00），生活雜貨文具，台灣沒有。<strong>ドン・キホーテ 京都四条河原町店</strong>營業到很晚。<span style="opacity:.7">藤井大丸整修中。</span></div></div></li>
+      <div class="note"><strong>錦市場由西往東逛到底，東端出來就接新京極</strong>，中間就是錦天満宮（Nishiki Tenmangu・免費）。</div>
+      <div class="note"><strong>ロンドン焼</strong>（London 燒・四条通進新京極的入口附近）——戰後至今京都人吃到大的懷舊點心，小顆カステラ（蜂蜜蛋糕）皮包白豆餡。</div>
+      <div class="note"><strong>LOFT</strong>（ロフト・生活雜貨）在 MINA京都（河原町三条下ル，11:00–21:00），生活雜貨文具，台灣沒有。<strong>ドン・キホーテ</strong>（唐吉訶德）<strong>京都四条河原町店</strong>營業到很晚。<span style="opacity:.7">藤井大丸整修中。</span></div></div></li>
     <li class="is-key"><div class="t key">17:00</div><div class="c"><div class="ttl">中村藤吉 四条店（抹茶甜點）</div>
       <div class="note">京都高島屋 S.C.「T8」3F。10:00–20:00，<strong>L.O. 19:00</strong>。避開 14:00–16:00 的下午茶尖峰，平日晚間人潮最鬆。逛完新京極直接下樓進場，零繞路。</div>
-      <a class="maplink" href="https://www.takashimaya.co.jp/kyoto/specialtystores/shop/10044">官方頁</a></div></li>
-    <li><div class="t">18:30</div><div class="c"><div class="ttl">スギ薬局 四条河原町店</div>
+      <a class="maplink" href="https://maps.app.goo.gl/fAytzfUJrMBV1SZx5">T8 地圖</a></div></li>
+    <li><div class="t">18:30</div><div class="c"><div class="ttl">スギ薬局（SUGI 藥局）四条河原町店</div>
       <a class="maplink" href="https://maps.app.goo.gl/R2x5fKCaMU2QpoNQ8">地圖</a></div></li>
     <li><div class="t">19:00</div><div class="c"><div class="ttl">晚餐・留白</div>
       <div class="note">當天看心情。<strong>提醒：</strong>17:00 剛吃完抹茶甜點，別太重；四条河原町／木屋町一帶最順。這趟已吃過燒肉、湯豆腐、涮涮鍋吃到飽、拉麵、大阪燒。</div></div></li>
@@ -504,10 +518,14 @@ footer{
     <li class="is-key"><div class="t key">09:00</div><div class="c"><div class="ttl">退房・行李交給櫃檯</div><div class="note">4 件（2 大 2 小）交給 SFSD。</div></div></li>
     <li class="is-move"><div class="t">09:15</div><div class="c">
       <div class="leg ln-hankyu"><span class="lname">阪急京都線</span><span class="ldet">烏丸 → 大阪梅田　44 分</span><span class="lfare">¥410</span></div>
-      <div class="leg ln-mido"><span class="lname">御堂筋線</span><span class="ldet">梅田 → なんば　8 分</span><span class="lfare">¥240</span></div></div></li>
+      <div class="leg ln-mido"><span class="lname">御堂筋線</span><span class="ldet">梅田 → なんば（難波）　8 分</span><span class="lfare">¥240</span></div></div></li>
+    <li class="is-key"><div class="t key">10:30</div><div class="c"><div class="ttl">抵達難波・先去把車票搞定</div>
+      <div class="note">到南海難波站售票處，<strong>先決定並確認回程班次</strong>，免得下午匆忙。</div>
+      <div class="note"><strong>空港急行</strong>：¥970，45 分，約 15 分一班——<strong>刷 Suica 就好，不用買票</strong>，只要確認發車時刻。<br><strong>ラピート（Rapi:t）</strong>：¥1,490，37–42 分，<strong>要買特急券</strong>，有對號座與行李架。</div>
+      <div class="note">⚠️ <strong>13:00 前一定要上車</strong>才趕得上 13:45 到機場。</div></div></li>
     <li class="is-key"><div class="t key">10:45</div><div class="c"><div class="ttl">黑門市場</div>
       <div class="note">9:00–18:00（各店不一）。從なんば步行約 10 分。丼飯現場看、隨便挑。</div>
-      <div class="note"><span style="opacity:.75">參考：千成屋（約 90 席，不用等位，5 種海鮮丼 ¥2,000）／黒門三平（海鮮丼 ¥1,500，人氣第一，中午前常賣完）／深廣（1905 年創業，可自選配料的「えらんで丼」¥1,620）</span></div></div></li>
+      <div class="note"><span style="opacity:.75">參考：千成屋（Sennariya・約 90 席，不用等位，5 種海鮮丼 ¥2,000）／黒門三平（Kuromon Sanpei・海鮮丼 ¥1,500，人氣第一，中午前常賣完）／深廣（Fukahiro・1905 年創業，可自選配料的「えらんで丼」＝自選丼 ¥1,620）</span></div></div></li>
     <li class="is-key"><div class="t key">12:40</div><div class="c"><div class="ttl">離開黑門市場</div><div class="note">不用取行李，比原案多待 15 分。步行至南海難波站約 10 分。</div></div></li>
     <li class="is-move"><div class="t key">12:53</div><div class="c">
       <div class="leg ln-nankai"><span class="lname">南海 空港急行</span><span class="ldet">難波 → 關西空港　<strong>45 分</strong>・刷 Suica 免買票・約 15 分一班</span><span class="lfare">¥970</span></div>
@@ -520,7 +538,83 @@ footer{
   </ol>
 
   <div class="note-box nb-info">
-    <p><strong>想在黑門市場多待 10 分鐘？</strong>改搭 ラピート（37–42 分），13:00 發也能 13:42 到。代價是多 ¥520／人＋要買特急券。α 和 β 票價相同、白天交替運行，來哪班搭哪班，β 只慢 2–3 分。</p>
+    <p><strong>想在黑門市場多待 10 分鐘？</strong>改搭 ラピート（Rapi:t・特急，37–42 分），13:00 發也能 13:42 到。代價是多 ¥520／人＋要買特急券。α 和 β 票價相同、白天交替運行，來哪班搭哪班，β 只慢 2–3 分。</p>
+  </div>
+</section>
+
+<!-- ============ 伴手禮 ============ -->
+<section class="panel" id="dg" role="tabpanel" aria-labelledby="tg">
+  <h2 class="dayhead">伴手禮・採購清單</h2>
+  <div class="daymeta"><span>按時間序排</span><span>點一下可打勾，會記住</span></div>
+
+  <div class="note-box nb-info">
+    <p>買到了就<strong>點一下打勾</strong>，重開網頁還會記得。清單會再補充。</p>
+  </div>
+
+  <h3 class="sec">Day 1 ・ 9/26（六）晚上</h3>
+  <ul class="chk" data-store="g1">
+    <li>伊藤園 ITOEN <strong>透明抹茶 matcha love</strong>　<span style="color:var(--muted)">Fresco 超市或 SUGI 藥局</span></li>
+    <li><strong>明天的早餐</strong>不用買（Day 3 才需要），但可以先看看超市有什麼</li>
+  </ul>
+  <div class="rows" style="margin-top:8px">
+    <div class="row"><div class="rt">Fresco 超市 五條西洞院店<span class="rp">24 小時</span></div>
+      <a class="maplink" href="https://maps.app.goo.gl/mb3NKPLGq9JsQrFQ8">地圖</a></div>
+    <div class="row"><div class="rt">SUGI 藥局 五條烏丸店<span class="rp">09:00–23:00</span></div>
+      <a class="maplink" href="https://maps.app.goo.gl/XYrWsSG1jPjSi2Kh8">地圖</a></div>
+  </div>
+
+  <h3 class="sec">Day 2 ・ 9/27（日）大阪</h3>
+  <ul class="chk" data-store="g2">
+    <li><strong>一保堂</strong>茶類　<span style="color:var(--muted)">大阪高島屋 B1F 食品樓層・找不到就問 1 樓服務台</span></li>
+    <li>無印良品　<span style="color:var(--muted)">心斎橋PARCO 7F・站直結</span></li>
+    <li>UNIQLO　<span style="color:var(--muted)">心齋橋筋，或 なんばCITY B2F，逛一家就好</span></li>
+    <li>GU　<span style="color:var(--muted)">心斎橋駅 6 號出口步行 3 分</span></li>
+    <li>DAISO 大創　<span style="color:var(--muted)">心齋橋筋南段・3 層樓・10:00–22:00</span></li>
+    <li>3COINS+plus　<span style="color:var(--muted)">なんばCITY 本館 B2F・11:00–21:00</span></li>
+  </ul>
+
+  <h3 class="sec">Day 4 ・ 9/29（二）京都</h3>
+  <div class="note-box nb-warn">
+    <p><strong>寶可夢中心・幫素菱代購</strong>——藝妓皮卡丘是京都限定，<strong>一進店先問店員有無現貨</strong>，限定品容易缺貨。</p>
+  </div>
+  <ul class="chk" data-store="g4a">
+    <li><strong>洛奇亞（ルギア）玩偶</strong></li>
+    <li><strong>藝妓皮卡丘</strong>　<span style="color:var(--muted)">京都限定</span></li>
+    <li><strong>購物袋</strong></li>
+  </ul>
+  <div class="rows" style="margin-top:8px">
+    <div class="row"><div class="rt">寶可夢中心 京都店<span class="rp">10:00–20:00</span></div>
+      <div class="rd">SUINA室町 2F・地鐵四条駅／阪急烏丸駅 26 號出口直結</div>
+      <a class="maplink" href="https://maps.app.goo.gl/hZYihq3TBSrotWzaA">地圖</a></div>
+  </div>
+  <ul class="chk" data-store="g4b" style="margin-top:14px">
+    <li>藥妝　<span style="color:var(--muted)">Sundrug Nishiki（錦市場內）</span></li>
+    <li>藥妝　<span style="color:var(--muted)">スギ薬局 四条河原町店・排在中村藤吉之後</span></li>
+    <li>皮革製品　<span style="color:var(--muted)">SLOW 京都・平日 11:00–19:30・順路看一眼，沒開就算了</span></li>
+    <li>LOFT 生活雜貨　<span style="color:var(--muted)">MINA京都・11:00–21:00・台灣沒有</span></li>
+  </ul>
+  <div class="rows" style="margin-top:8px">
+    <div class="row"><div class="rt">スギ薬局 四条河原町店</div>
+      <a class="maplink" href="https://maps.app.goo.gl/R2x5fKCaMU2QpoNQ8">地圖</a></div>
+    <div class="row"><div class="rt">SLOW 京都</div>
+      <a class="maplink" href="https://maps.app.goo.gl/PkTQ31LwcYnXEgmr7">地圖</a></div>
+    <div class="row"><div class="rt">Sundrug Nishiki</div>
+      <a class="maplink" href="https://maps.app.goo.gl/D2c7GofuBb6h2bpe8">地圖</a></div>
+  </div>
+
+  <h3 class="sec">Day 5 ・ 9/30（三）最後補貨</h3>
+  <ul class="chk" data-store="g5">
+    <li>黑門市場　<span style="color:var(--muted)">海產乾貨、漬物之類，但要考慮帶上飛機的限制</span></li>
+    <li>關西機場免稅店　<span style="color:var(--muted)">13:45 之後還有 2.5 小時</span></li>
+  </ul>
+  <div class="note-box nb-warn">
+    <p><strong>Day 5 行李 9:00 就被 SFSD 載走了。</strong>當天買的東西只能自己拎上飛機，<strong>液體、生鮮、刀具都要考慮隨身行李的限制</strong>——真要買大件的，Day 4 之前買完塞進託運行李。</p>
+  </div>
+
+  <h3 class="sec">提醒</h3>
+  <div class="note-box nb-info">
+    <p><strong>免稅</strong>：同一家店當日滿 ¥5,000 可辦免稅，記得帶<strong>護照</strong>。</p>
+    <p><strong>行動電源不能託運</strong>——如果在日本買了，Day 5 要隨身帶上飛機。</p>
   </div>
 </section>
 
@@ -604,7 +698,7 @@ footer{
 
   <h3 class="sec">拖行李搭車</h3>
   <div class="note-box nb-warn">
-    <p><strong>京都市巴士明文勸阻大型行李。</strong>運送約款上限是三邊合計 1m、10kg（任何行李箱都超標），乘車口貼有「大型荷物の持ち込みご遠慮」貼紙，司機有權在車內擁擠時限制上車。</p>
+    <p><strong>京都市巴士明文勸阻大型行李。</strong>運送約款上限是三邊合計 1m、10kg（任何行李箱都超標），乘車口貼有「大型荷物の持ち込みご遠慮」（請勿攜帶大型行李）貼紙，司機有權在車內擁擠時限制上車。</p>
     <p><strong>地鐵相反，官方主動引導旅客改搭。</strong>車廂寬、有電梯，帶行李完全正常。</p>
     <p>這趟真正要拖行李的只有 Day 1（地鐵 2 站）——Day 5 已改用 SFSD 宅配，Day 2／3／4 行李都在飯店。</p>
   </div>
@@ -639,6 +733,27 @@ footer{
     tabs[i].scrollIntoView({block:'nearest',inline:'center'});
     window.scrollTo(0,0);
   }
+  // 可打勾的清單（記在這支手機上）
+  [].slice.call(document.querySelectorAll('ul.chk[data-store]')).forEach(function(ul){
+    var key='kyoto-chk-'+ul.getAttribute('data-store');
+    var done={};
+    try{done=JSON.parse(localStorage.getItem(key)||'{}');}catch(e){}
+    [].slice.call(ul.children).forEach(function(li,idx){
+      if(done[idx]) li.classList.add('done');
+      li.setAttribute('role','button');
+      li.setAttribute('tabindex','0');
+      function toggle(){
+        li.classList.toggle('done');
+        done[idx]=li.classList.contains('done');
+        try{localStorage.setItem(key,JSON.stringify(done));}catch(e){}
+      }
+      li.addEventListener('click',toggle);
+      li.addEventListener('keydown',function(e){
+        if(e.key===' '||e.key==='Enter'){e.preventDefault();toggle();}
+      });
+    });
+  });
+
   tabs.forEach(function(t,i){
     t.addEventListener('click',function(){show(i);});
     t.addEventListener('keydown',function(e){
