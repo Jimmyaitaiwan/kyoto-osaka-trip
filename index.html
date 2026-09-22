@@ -496,6 +496,13 @@ footer{
       <div class="note">兩條平行的拱廊商店街，寺町京極約 170 家店，新京極是日本第二古老的商店街。有頂棚，下雨也能逛。</div>
       <div class="note"><strong>錦市場由西往東逛到底，東端出來就接新京極</strong>，中間就是錦天満宮（Nishiki Tenmangu・免費）。</div>
       <div class="note"><strong>ドン・キホーテ</strong>（唐吉訶德）<strong>京都四条河原町店</strong>營業到很晚。<span style="opacity:.7">藤井大丸整修中。</span></div></div></li>
+    <li><div class="t">有空</div><div class="c"><div class="ttl">Y's Road 京都店（公路車專賣店）</div>
+      <div class="note">中京区裏寺町 595 グラン・レ・ジェイド京都河原町 1F，<strong>就在新京極旁邊的裏寺町通</strong>，逛商店街時順路彎進去。<strong>12:00–20:00</strong>，TEL 075-254-7827。<span style="opacity:.7">公休說法不一（官網寫無休、另有資料寫每月第 2 個週一），9/29 是週二都不影響。</span></div>
+      <a class="maplink" href="https://maps.app.goo.gl/Lxd9DKKQT8i1bJEo8">地圖</a></div></li>
+    <li><div class="t">有空</div><div class="c"><div class="ttl">六曜社珈琲店（1950 年創業・坐下來喝咖啡）</div>
+      <div class="note">河原町三条下ル，新京極北端往東一條街。<strong>1 樓 8:30–22:30</strong>（L.O. 22:00，12:00 後可吸菸）／<strong>地下店 12:00–23:00</strong>（禁菸，17:00 後轉酒吧）。<strong>週三公休，9/29 有開。</strong></div>
+      <div class="note">名物是店裡現做的<strong>甜甜圈</strong>，但 17:00 還有中村藤吉——<strong>這邊喝咖啡就好，或兩個人分一個</strong>。在意菸味就坐地下店。</div>
+      <a class="maplink" href="https://maps.app.goo.gl/BZYxtXgxdsmvbN777">地圖</a></div></li>
     <li class="is-key"><div class="t key">17:00</div><div class="c"><div class="ttl">中村藤吉 四条店（抹茶甜點）</div>
       <div class="note">京都高島屋 S.C.「T8」3F。10:00–20:00，<strong>L.O. 19:00</strong>。避開 14:00–16:00 的下午茶尖峰，平日晚間人潮最鬆。逛完新京極直接下樓進場，零繞路。</div>
       <a class="maplink" href="https://maps.app.goo.gl/fAytzfUJrMBV1SZx5">T8 地圖</a></div></li>
@@ -604,6 +611,10 @@ footer{
       <a class="maplink" href="https://maps.app.goo.gl/PkTQ31LwcYnXEgmr7">地圖</a></div>
     <div class="row"><div class="rt">Sundrug Nishiki</div>
       <a class="maplink" href="https://maps.app.goo.gl/D2c7GofuBb6h2bpe8">地圖</a></div>
+    <div class="row"><div class="rt">Y's Road 京都店<span style="color:var(--muted)">・12:00–20:00</span></div>
+      <a class="maplink" href="https://maps.app.goo.gl/Lxd9DKKQT8i1bJEo8">地圖</a></div>
+    <div class="row"><div class="rt">六曜社珈琲店<span style="color:var(--muted)">・週三公休</span></div>
+      <a class="maplink" href="https://maps.app.goo.gl/BZYxtXgxdsmvbN777">地圖</a></div>
   </div>
 
   <h3 class="sec">Day 5 ・ 9/30（三）最後補貨</h3>
@@ -717,11 +728,44 @@ footer{
   </div>
 
   <footer>
-    最後更新 2026.09.20　｜　完整資料：travel/京都大阪_2026年9月.md
+    最後更新 2026.09.23　｜　完整資料：travel/京都大阪_2026年9月.md
   </footer>
 </section>
 
 </main>
+
+<div id="upd" hidden>有新版本 — 點此更新</div>
+<style>
+#upd{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom));
+  z-index:99;padding:11px 18px;border:0;border-radius:999px;background:var(--accent);color:#fff;
+  font:600 15px/1 var(--ff-sans);box-shadow:0 4px 16px rgba(0,0,0,.28);cursor:pointer}
+#upd[hidden]{display:none}
+</style>
+<script>
+/* 主畫面 App 沒有重新整理鍵：自己偵測 index.html 變了就跳提示 */
+(function(){
+  var btn=document.getElementById('upd'), tag=null, busy=false;
+  function stamp(r){ return r.headers.get('etag')||r.headers.get('last-modified')||''; }
+  function check(){
+    if(busy||!navigator.onLine) return;
+    busy=true;
+    fetch(location.pathname+'?_='+Date.now(),{method:'HEAD',cache:'no-store'})
+      .then(function(r){
+        var t=stamp(r);
+        if(!t) return;
+        if(tag===null){ tag=t; return; }
+        if(t!==tag) btn.hidden=false;
+      })
+      .catch(function(){})
+      .then(function(){ busy=false; });
+  }
+  btn.addEventListener('click',function(){ location.reload(); });
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden) check(); });
+  window.addEventListener('pageshow',check);
+  setInterval(check,5*60*1000);
+  check();
+})();
+</script>
 
 <script>
 (function(){
